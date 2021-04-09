@@ -15,14 +15,12 @@ def main(df,columns,fname):
     total = len(df.index)
     for index, row in df.iterrows():
         printProgressBar(index, total)
-        content = ""
         for col in columns:
-            content += " "+str(row[col])
-        sentiment_out = parse(content)
-        for index2, info in enumerate(sentiment_out):
-            df.loc[index,new_fields[index2]] = info
+            sentiment_out = parse(str(row[col]))
+            for index2, info in enumerate(sentiment_out):
+                if new_fields[index2]!="file name":
+                    df.loc[index,new_fields[index2]+" - "+col] = info
 
-    df = df.drop(columns=["file name"])
     df.to_csv("results/"+fname)
 
 if __name__ == "__main__":
@@ -37,4 +35,4 @@ if __name__ == "__main__":
     df = pd.read_csv("resources/"+fname, dtype=object)
     main(df, fields, fname)
 
-    print("Done!")
+    print("\nDone!")
