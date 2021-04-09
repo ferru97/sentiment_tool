@@ -46,10 +46,10 @@ MASTER_DICTIONARY_FILE = r'resources/LoughranMcDonald_MasterDictionary_2018.csv'
 # User defined output file
 OUTPUT_FILE = r'results/Parser.csv'
 # Setup output
-OUTPUT_FIELDS = ['file name,', 'file size,', 'number of words,', '% positive,', '% negative,',
-                 '% uncertainty,', '% litigious,', '% modal-weak,', '% modal moderate,',
-                 '% modal strong,', '% constraining,', '# of alphabetic,', '# of digits,',
-                 '# of numbers,', 'avg # of syllables per word,', 'average word length,', 'vocabulary']
+OUTPUT_FIELDS = ['file name', 'file size', 'number of words', '% positive', '% negative',
+                 '% uncertainty', '% litigious', '% modal-weak', '% modal moderate',
+                 '% modal strong', '% constraining', '# of alphabetic', '# of digits',
+                 '# of numbers', 'avg # of syllables per word', 'average word length', 'vocabulary']
 
 lm_dictionary = LM.load_masterdictionary(MASTER_DICTIONARY_FILE, True)
 

@@ -22,6 +22,7 @@ def main(df,columns,fname):
         for index2, info in enumerate(sentiment_out):
             df.loc[index,new_fields[index2]] = info
 
+    df = df.drop(columns=["file name"])
     df.to_csv("results/"+fname)
 
 if __name__ == "__main__":
