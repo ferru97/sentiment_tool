@@ -13,12 +13,16 @@ from nltk.corpus import stopwords
 import gensim.corpora as corpora
 from pprint import pprint
 
-import pyLDAvis.gensim
 import pickle 
 import pyLDAvis
 
-alpha = 0
-beta = 0
+#https://radimrehurek.com/gensim/models/ldamulticore.html
+nw = 5
+alpha = "auto"
+eta = "auto"
+passes = 200
+
+
 
 def sent_to_words(sentences):
     for sentence in sentences:
@@ -71,11 +75,10 @@ for index, row in df.iterrows():
     # number of topics
     num_topics = 3
     # Build LDA model
-    lda_model = gensim.models.LdaModel(corpus=corpus,id2word=id2word,num_topics=num_topics, eta="auto", alpha="auto" )
+    lda_model = gensim.models.LdaModel(corpus=corpus,id2word=id2word,num_topics=num_topics, eta=eta, alpha=alpha, passes=passes, random_state=30 )
     # Print the Keyword in the 3 topics
     for i in range(0,num_topics):
-        df.loc[index,"topic "+str(i+1)] = str((lda_model.print_topics())[1])
-    
+        df.loc[index,"topic "+str(i+1)] = str((lda_model.print_topics(num_words=nw))[1])
 
 
 df.to_csv("results/res.csv")
